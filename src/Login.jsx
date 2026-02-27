@@ -1,10 +1,16 @@
-
+import axios from "axios";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
+import {  useNavigate } from "react-router";
+
 
 export default function LoginPage() {
+
+ 
+  const navigate=useNavigate()
+
   const [showPassword, setShowPassword] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
+
 
   const {
     register,
@@ -13,27 +19,34 @@ export default function LoginPage() {
   } = useForm();
 
   const onSubmit = async (data) => {
-    setIsLoading(true);
-    console.log("Login data:", data);
-    // এখানে তোমার API call দাও:
-    // await axiosInstance.post("/auth/login", data)
-    await new Promise((r) => setTimeout(r, 1500));
-    setIsLoading(false);
+   
+    try {
+  const res = await axios.post('https://task-api-eight-flax.vercel.app/api/login', data);
+         
+  const token=res.data.token
+    localStorage.setItem("dashboard",token)
+    
+    navigate('/dashboard')
+    if(res.data.email){
+      console.log("Login successful!");
+    } 
+} catch(error) {
+  if(error.response?.status === 401){
+    console.log("Email or password is wrong!");
+  } else {
+    console.log("Network/server error!");
+  }
+}
   };
 
   return (
     <div className="min-h-screen bg-gray-50 flex items-center justify-center p-4">
       <div className="w-full max-w-sm bg-white rounded-2xl shadow-sm border border-gray-100 p-8">
+        <h1 className="text-gray-900 text-2xl font-bold text-center mb-4">
+          Sign in
+        </h1>
 
-        
-
-        {/* Heading */}
-        <h1 className="text-gray-900 text-2xl font-bold  text-center mb-4">Sign in</h1>
-        
-
-        {/* Form */}
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
-
           {/* Email */}
           <div>
             <label className="block text-gray-700 text-sm font-medium mb-1.5">
@@ -48,13 +61,7 @@ export default function LoginPage() {
                   ? "border-red-400 bg-red-50"
                   : "border-gray-300 focus:border-[#2d6a4f]"
                 }`}
-              {...register("email", {
-                required: "Email is required",
-            
-                  
-            
-                
-              })}
+              {...register("email", { required: "Email is required" })}
             />
             {errors.email && (
               <p className="mt-1 text-red-500 text-xs">{errors.email.message}</p>
@@ -65,7 +72,6 @@ export default function LoginPage() {
           <div>
             <div className="flex items-center justify-between mb-1.5">
               <label className="text-gray-700 text-sm font-medium">Password</label>
-             
             </div>
             <div className="relative">
               <input
@@ -77,10 +83,7 @@ export default function LoginPage() {
                     ? "border-red-400 bg-red-50"
                     : "border-gray-300 focus:border-[#2d6a4f]"
                   }`}
-                {...register("password", {
-                  required: "Pass word is required",
-                 
-                })}
+                {...register("password", { required: "Password is required" })}
               />
               <button
                 type="button"
@@ -88,15 +91,33 @@ export default function LoginPage() {
                 className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600 transition-colors"
               >
                 {showPassword ? (
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                    <path d="M17.94 17.94A10.07 10.07 0 0112 20c-7 0-11-8-11-8a18.45 18.45 0 015.06-5.94"/>
-                    <path d="M9.9 4.24A9.12 9.12 0 0112 4c7 0 11 8 11 8a18.5 18.5 0 01-2.16 3.19"/>
-                    <line x1="1" y1="1" x2="23" y2="23"/>
+                  <svg
+                    width="16"
+                    height="16"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
+                    <path d="M17.94 17.94A10.07 10.07 0 0112 20c-7 0-11-8-11-8a18.45 18.45 0 015.06-5.94" />
+                    <path d="M9.9 4.24A9.12 9.12 0 0112 4c7 0 11 8 11 8a18.5 18.5 0 01-2.16 3.19" />
+                    <line x1="1" y1="1" x2="23" y2="23" />
                   </svg>
                 ) : (
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
-                    <circle cx="12" cy="12" r="3"/>
+                  <svg
+                    width="16"
+                    height="16"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
+                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+                    <circle cx="12" cy="12" r="3" />
                   </svg>
                 )}
               </button>
@@ -109,21 +130,12 @@ export default function LoginPage() {
           {/* Submit */}
           <button
             type="submit"
-            disabled={isLoading}
             className="w-full bg-[#2d6a4f] hover:bg-[#40916c] disabled:opacity-60 disabled:cursor-not-allowed text-white font-semibold text-sm py-2.5 rounded-lg transition-colors flex items-center justify-center gap-2"
+            
           >
-            {isLoading ? (
-              <>
-                <svg className="animate-spin" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                  <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/>
-                </svg>
-                Signing in...
-              </>
-            ) : "Sign In"}
+           Sign in
           </button>
         </form>
-
-       
       </div>
     </div>
   );
