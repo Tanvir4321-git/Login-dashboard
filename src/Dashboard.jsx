@@ -6,13 +6,14 @@ import { IoIosNotificationsOutline, IoMdAdd } from "react-icons/io";
 import profile from '../public/profile.png'
 
 import { NavLink } from 'react-router';
+import Overview from './Component/Dashboard/Overview';
 
 const Dashboard = () => {
     return (
-        <div className='max-w-7xl mx-auto py-10'>
-            <div className='flex gap-8'>
+        <div className='max-w-7xl mx-auto py-10 px-4'>
+            <div className='flex flex-col lg:flex-row gap-8'>
                 {/* left side */}
-                <div className='bg-[#f7f7f7] rounded-2xl p-4 w-1/5'>
+                <div className='bg-[#f7f7f7] rounded-2xl p-4 w-full lg:w-1/5'>
                     <h2 className='text-2xl text-center font-semibold mt-4 mb-10'>Donezo</h2>
 
                     {/* Menu Section */}
@@ -56,9 +57,9 @@ const Dashboard = () => {
                     </div>
                 </div>
                 {/* right side */}
-                <div className='w-4/5'>
-                    {/* upeer Section */}
-                    <div className='flex items-center justify-between px-6 py-3 bg-[#f7f7f7] rounded-2xl mb-2 '>
+                <div className='w-full lg:w-4/5'>
+                    {/* upper Section */}
+                    <div className='flex flex-col md:flex-row items-center justify-between px-6 py-3 bg-[#f7f7f7] rounded-2xl mb-2 '>
 
                         {/* Search */}
                         <div className='flex items-center gap-2 bg-white rounded-lg px-3 py-2 w-64'>
@@ -71,8 +72,7 @@ const Dashboard = () => {
                             <span className='text-xs text-gray-400 bg-gray-200 px-1.5 py-0.5 rounded'>⌘F</span>
                         </div>
 
-
-                        <div className='flex items-center gap-4'>
+                        <div className='flex mt-3 md:mt-0 mx-auto md:mx-0 items-center gap-4 ml-auto'>
 
                             {/* Email Icon */}
                             <button className='text-gray-600 rounded-full bg-white p-2'>
@@ -91,40 +91,41 @@ const Dashboard = () => {
                                     alt='profile'
                                     className='w-9 h-9 rounded-full object-cover bg-white p-1.5'
                                 />
-                                <div>
+                                <div className='hidden md:block'>
                                     <p className='text-sm font-semibold text-gray-800 leading-tight'>Totok Michael</p>
                                     <p className='text-xs text-gray-400'>tmichael20@mail.com</p>
                                 </div>
                             </div>
-
-
-
-
                         </div>
                     </div>
 
+                    <div className='bg-[#f7f7f7] p-4 rounded-2xl'>
                     {/* dashboard header */}
-                    <div className='bg-[#f7f7f7] p-4 rounded-2xl' >
 
-                    <div className='flex items-center justify-between '>
+                    <div className='mb-2' >
 
-                        
+                    <div className='flex flex-col md:flex-row gap-3 md:gap-0 items-center justify-between '>
+
                         <div>
-                            <h1 className='text-2xl font-bold text-gray-900'>Dashboard</h1>
-                            <p className='text-sm text-gray-400 mt-1'>Plan, prioritize, and accomplish your tasks with ease.</p>
+                            <h1 className='text-2xl font-bold text-gray-900 text-center md:text-left'>Dashboard</h1>
+                            <p className='text-sm text-center md:text-left text-gray-400 mt-1'>Plan, prioritize, and accomplish your tasks with ease.</p>
                         </div>
 
                         {/* Right - Buttons */}
                         <div className='flex items-center gap-3'>
                             <button className='flex items-center gap-2 bg-gradient-to-r from-[#144e33] to-[#22744f]  text-white text-sm font-medium px-4 py-2 rounded-lg '>
                                 <IoMdAdd size={18} />
-                                Add Project
+                                <span >Add Project</span>
                             </button>
-                            <button className='text-sm font-medium text-gray-700 border border-gray-300  px-4 py-2 rounded-lg '>
+                            <button className=' text-sm font-medium text-gray-700 border border-gray-300  px-4 py-2 rounded-lg'>
                                 Import Data
                             </button>
                         </div>
                     </div>
+                    </div>
+                    {/* overview */}
+                    <Overview></Overview>
+                    
                     </div>
 
                 </div>
