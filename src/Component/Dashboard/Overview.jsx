@@ -3,6 +3,8 @@ import axios from 'axios';
 import React from 'react';
 import { IoMdArrowDropup } from "react-icons/io";
 import { HiArrowUpRight } from "react-icons/hi2";
+import { motion } from 'motion/react';
+
 const Overview = () => {
 
     const { data = {}, isLoading, isError } = useQuery({
@@ -30,66 +32,79 @@ const Overview = () => {
     )
 
     return (
-        <div className='grid md:grid-cols-4 grid-cols-1  gap-4 px-6 py-4'>
+        <div className='grid md:grid-cols-4 grid-cols-1 gap-4 px-6 py-4'>
 
             {/* Total Users */}
-            <div className='rounded-2xl p-5 bg-gradient-to-br from-[#12452d] to-[#1e714a] text-white'>
+            <motion.div
+                whileHover={{ scale: 1.06 }}
+                transition={{ duration: 0.2 }}
+                className='rounded-2xl p-5 bg-gradient-to-br from-[#12452d] to-[#1e714a] text-white cursor-pointer'
+            >
                 <div className='flex items-center justify-between mb-4'>
-                    <h4 className=' font-medium text-gray-300'>Total Users</h4>
+                    <h4 className='font-medium text-gray-300'>Total Users</h4>
                     <button className='p-1.5 rounded-full border bg-white'>
                         <HiArrowUpRight size={12} color='black' />
                     </button>
                 </div>
-                <h1 className='text-4xl font-bold    mb-3'>{data.totalUsers}</h1>
+                <h1 className='text-4xl font-bold mb-3'>{data.totalUsers}</h1>
                 <div className='flex items-center gap-1.5 text-xs text-[#a8f19f]'>
-                    <span className='border  rounded p-0.5 flex items-center'>
+                    <span className='border rounded p-0.5 flex items-center'>
                         5 <IoMdArrowDropup />
                     </span>
                     Increased from last month
                 </div>
-            </div>
+            </motion.div>
 
             {/* Active Users */}
-            <div className='rounded-2xl p-5 bg-white text-gray-900'>
+            <motion.div
+                whileHover={{ scale: 1.06 }}
+                transition={{ duration: 0.2 }}
+                className='rounded-2xl p-5 bg-white text-gray-900 cursor-pointer'
+            >
                 <div className='flex items-center justify-between mb-4'>
-                    <h3 className='font-medium '>Active Users</h3>
-                    <button className='p-1.5 rounded-full border '>
+                    <h3 className='font-medium'>Active Users</h3>
+                    <button className='p-1.5 rounded-full border'>
                         <HiArrowUpRight size={12} color='black' />
                     </button>
                 </div>
                 <h1 className='text-4xl font-bold mb-3'>{data.activeUsers}</h1>
-
                 <div className='flex items-center gap-1.5 text-xs text-[#6ff05e]'>
                     <span className='border border-gray-300 rounded p-0.5 flex items-center'>
                         6 <IoMdArrowDropup />
                     </span>
                     Increased from last month
                 </div>
-            </div>
+            </motion.div>
 
             {/* Revenue */}
-            <div className='rounded-2xl p-5 bg-white text-gray-900'>
+            <motion.div
+                whileHover={{ scale: 1.06 }}
+                transition={{ duration: 0.2 }}
+                className='rounded-2xl p-5 bg-white text-gray-900 cursor-pointer'
+            >
                 <div className='flex items-center justify-between mb-4'>
-                    <h3 className=' font-medium '>Revenue</h3>
-                    <button className='p-1.5 rounded-full border  '>
+                    <h3 className='font-medium'>Revenue</h3>
+                    <button className='p-1.5 rounded-full border'>
                         <HiArrowUpRight size={12} color='black' />
                     </button>
                 </div>
                 <h1 className='text-4xl font-bold mb-3'>{data.revenue}</h1>
                 <div className='flex items-center gap-1.5 text-xs text-[#96ac97]'>
-
                     <div className='flex items-center gap-1.5 text-xs text-[#6ff05e]'>
                         <span className='border border-gray-300 rounded p-0.5 flex items-center'>
                             2 <IoMdArrowDropup />
                         </span>
                         Increased from last month
                     </div>
-
                 </div>
-            </div>
+            </motion.div>
 
             {/* Growth */}
-            <div className='rounded-2xl p-5 bg-white text-gray-900'>
+            <motion.div
+                whileHover={{ scale: 1.06 }}
+                transition={{ duration: 0.2 }}
+                className='rounded-2xl p-5 bg-white text-gray-900 cursor-pointer'
+            >
                 <div className='flex items-center justify-between mb-4'>
                     <h3 className='font-medium text-gray-500'>Growth</h3>
                     <button className='p-1.5 rounded-full border'>
@@ -98,10 +113,9 @@ const Overview = () => {
                 </div>
                 <h1 className='text-4xl font-bold mb-3'>{data.growth}%</h1>
                 <div className='flex items-center gap-1.5 text-xs text-[#6ff05e]'>
-
                     On Discuss
                 </div>
-            </div>
+            </motion.div>
 
         </div>
     );

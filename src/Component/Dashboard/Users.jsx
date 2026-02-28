@@ -67,7 +67,7 @@ const Users = () => {
                 </thead>
                 <tbody className='divide-y divide-gray-50'>
                     {data.map((user) => (
-                        <tr key={user.id}>
+                        <tr key={user.id} className='hover:bg-gray-200 transition-colors cursor-pointer'>
 
                             {/* Avatar + Name + Email */}
                             <td className='py-3'>
@@ -97,7 +97,7 @@ const Users = () => {
             </table>
         </div>
 
-        {/* Modal — createPortal দিয়ে সরাসরি body তে */}
+        {/* Modal */}
         {selectedUser && createPortal(
             <div
                 className='fixed inset-0 bg-black/40 flex items-center justify-center z-50 p-4'

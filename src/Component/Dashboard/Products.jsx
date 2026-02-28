@@ -67,7 +67,7 @@ const Products = () => {
                 </thead>
                 <tbody className='divide-y divide-gray-50'>
                     {data.map((product) => (
-                        <tr key={product.id}>
+                        <tr key={product.id} className='hover:bg-gray-200 transition-colors cursor-pointer'>
                             <td className='py-3'>
                                 <div className='flex items-center gap-3'>
                                     <div className='w-10 h-10 rounded-full bg-[#d8f3dc] text-[#1a3a2a] flex items-center justify-center text-xs font-bold flex-shrink-0'>
@@ -93,7 +93,7 @@ const Products = () => {
             </table>
         </div>
 
-        {/* Modal*/}
+        {/* Modal —*/}
         {selectedProduct && createPortal(
             <div
                 className='fixed inset-0 bg-black/40 flex items-center justify-center z-50 p-4'
