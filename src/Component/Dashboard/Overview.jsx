@@ -6,7 +6,7 @@ import { HiArrowUpRight } from "react-icons/hi2";
 const Overview = () => {
 
     const { data = {}, isLoading, isError } = useQuery({
-        queryKey: ['myOrder'],
+        queryKey: ['overview'],
         queryFn: async () => {
             const res = await axios('https://task-api-eight-flax.vercel.app/api/overview')
             return res.data
@@ -59,7 +59,7 @@ const Overview = () => {
                 </div>
                 <h1 className='text-4xl font-bold mb-3'>{data.activeUsers}</h1>
 
-                <div className='flex items-center gap-1.5 text-xs text-[#a8f19f]'>
+                <div className='flex items-center gap-1.5 text-xs text-[#6ff05e]'>
                     <span className='border border-gray-300 rounded p-0.5 flex items-center'>
                         6 <IoMdArrowDropup />
                     </span>
@@ -78,7 +78,7 @@ const Overview = () => {
                 <h1 className='text-4xl font-bold mb-3'>{data.revenue}</h1>
                 <div className='flex items-center gap-1.5 text-xs text-[#96ac97]'>
 
-                    <div className='flex items-center gap-1.5 text-xs text-[#a8f19f]'>
+                    <div className='flex items-center gap-1.5 text-xs text-[#6ff05e]'>
                         <span className='border border-gray-300 rounded p-0.5 flex items-center'>
                             2 <IoMdArrowDropup />
                         </span>
@@ -97,7 +97,7 @@ const Overview = () => {
                     </button>
                 </div>
                 <h1 className='text-4xl font-bold mb-3'>{data.growth}%</h1>
-                <div className='flex items-center gap-1.5 text-xs text-[#a8f19f]'>
+                <div className='flex items-center gap-1.5 text-xs text-[#6ff05e]'>
 
                     On Discuss
                 </div>

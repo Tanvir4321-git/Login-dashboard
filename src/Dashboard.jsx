@@ -7,6 +7,9 @@ import profile from '../public/profile.png'
 
 import { NavLink } from 'react-router';
 import Overview from './Component/Dashboard/Overview';
+import ProjectAnalytics from './Component/Dashboard/ProjectAnalytics';
+import Users from './Component/Dashboard/Users';
+import Products from './Component/Dashboard/Products';
 
 const Dashboard = () => {
     return (
@@ -125,7 +128,18 @@ const Dashboard = () => {
                     </div>
                     {/* overview */}
                     <Overview></Overview>
-                    
+                    {/* analysis */}
+                    <ProjectAnalytics></ProjectAnalytics>
+                    <div className='flex md:flex-row flex-col gap-3'>
+                        <div className='md:w-1/2 w-full'>
+                    <Users></Users>
+
+                        </div>
+                        <div  className='md:w-1/2 w-full'>
+
+                  <Products></Products>
+                        </div>
+                    </div>
                     </div>
 
                 </div>
